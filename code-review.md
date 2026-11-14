@@ -95,3 +95,13 @@
 ### 結論
 
 需修正。未關閉缺陷 1 則（CR-01），建議 3 則（CR-02、CR-03、CR-04）。修掉 CR-01 之前不能算通過。
+
+## 覆核（2026-10-28）
+
+審核者：工作區程式審核。熱點抽樣。未執行測試，未送流量。
+
+- CR-01 仍開放。`wrapper/start_wrapper/locust_start.py:282-286` 仍以 INFO 寫出整個 `user_detail_dict` 與 `kwargs`。
+- CR-02、CR-03、CR-04 仍開放，維持建議。
+- 新程式只加了 `_ShutdownAwareTCPServer`，accept 逾時 0.5 秒（`utils/socket_server/load_density_socket_server.py:40-45`）。預設 host 仍是 `localhost`（`:79`），日誌範本只記位元組數（`:36`）。沒有 `shell=True`、`eval`、`exec`、`pickle`、`yaml.load` 或 `verify=False`。
+- 新發現：無。
+- 結論：需修正。未關閉缺陷 1 則（CR-01），建議 3 則。
